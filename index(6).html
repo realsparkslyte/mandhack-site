@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MANDHACK — Mandats exclusifs. Sans prospecter.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,900&family=Epilogue:wght@300;400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #D2042D;
+  --red-dark: #a0021f;
+  --red-light: #fdf0f2;
+  --bg: #F8F5F1;
+  --white: #ffffff;
+  --ink: #181014;
+  --mid: #5a4048;
+  --light: #a08890;
+  --border: #ece4e7;
+  --serif: 'Playfair Display', Georgia, serif;
+  --sans: 'Epilogue', sans-serif;
+  --mono: 'Share Tech Mono', monospace;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { background:var(--bg); color:var(--ink); font-family:var(--sans); overflow-x:hidden; }
+
+/* NAV */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  height:64px; padding:0 32px;
+  display:flex; justify-content:space-between; align-items:center;
+  background:rgba(248,245,241,0.96); backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);
+}
+.logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+.logo-m {
+  width:32px; height:32px; background:var(--red); border-radius:7px;
+  display:flex; align-items:center; justify-content:center;
+  font-family:Georgia,serif; font-style:italic; font-weight:bold;
+  font-size:20px; color:white;
+}
+.logo-name { font-family:var(--mono); font-size:12px; letter-spacing:3px; color:var(--ink); }
+.logo-name span { color:var(--light); }
+.nav-btn {
+  font-family:var(--sans); font-weight:600; font-size:13px;
+  padding:9px 20px; background:var(--red); color:white;
+  text-decoration:none; border-radius:5px; transition:background 0.2s;
+}
+.nav-btn:hover { background:var(--red-dark); }
+
+/* HERO */
+.hero {
+  min-height:100vh; display:flex; flex-direction:column; justify-content:center;
+  padding:100px 32px 60px; max-width:720px; margin:0 auto;
+}
+.tag {
+  font-family:var(--mono); font-size:11px; letter-spacing:3px;
+  color:var(--red); text-transform:uppercase; margin-bottom:24px;
+  display:flex; align-items:center; gap:10px;
+  opacity:0; animation:up 0.5s 0.1s forwards;
+}
+.tag::before { content:''; width:20px; height:1px; background:var(--red); }
+
+.hero h1 {
+  font-family:var(--serif); font-weight:900;
+  font-size:clamp(40px,8vw,80px); line-height:1.02;
+  letter-spacing:-1px; margin-bottom:24px;
+  opacity:0; animation:up 0.5s 0.25s forwards;
+}
+.hero h1 em { font-style:italic; color:var(--red); }
+
+.hero p {
+  font-size:clamp(16px,2.5vw,19px); font-weight:300;
+  color:var(--mid); line-height:1.7; margin-bottom:36px;
+  max-width:520px;
+  opacity:0; animation:up 0.5s 0.4s forwards;
+}
+
+.hero-btns {
+  display:flex; gap:12px; flex-wrap:wrap;
+  opacity:0; animation:up 0.5s 0.55s forwards;
+}
+
+.btn-red {
+  font-family:var(--sans); font-weight:700; font-size:15px;
+  padding:16px 32px; background:var(--red); color:white;
+  text-decoration:none; border-radius:6px;
+  display:inline-flex; align-items:center; gap:8px;
+  transition:all 0.2s;
+}
+.btn-red:hover { background:var(--red-dark); transform:translateY(-2px); box-shadow:0 8px 20px rgba(210,4,45,0.3); }
+
+.btn-outline {
+  font-family:var(--sans); font-weight:500; font-size:15px;
+  padding:16px 28px; background:transparent; color:var(--mid);
+  text-decoration:none; border:1px solid var(--border); border-radius:6px;
+  display:inline-flex; align-items:center; gap:8px; transition:all 0.2s;
+}
+.btn-outline:hover { border-color:var(--red); color:var(--red); }
+
+/* STRIP */
+.strip {
+  background:var(--red); padding:16px 0; overflow:hidden;
+}
+.strip-inner {
+  display:flex; gap:48px; white-space:nowrap; width:max-content;
+  animation:scroll 25s linear infinite;
+}
+.strip-item {
+  font-family:var(--mono); font-size:11px; letter-spacing:2px;
+  color:rgba(255,255,255,0.6); text-transform:uppercase;
+  display:flex; align-items:center; gap:10px;
+}
+.strip-item b { color:white; }
+.strip-item::before { content:'◆'; font-size:5px; opacity:0.4; }
+@keyframes scroll { to { transform:translateX(-50%); } }
+
+/* STEPS */
+.steps-section {
+  max-width:720px; margin:0 auto; padding:80px 32px;
+}
+.eyebrow {
+  font-family:var(--mono); font-size:10px; letter-spacing:4px;
+  color:var(--red); text-transform:uppercase; margin-bottom:16px;
+  display:flex; align-items:center; gap:10px;
+}
+.eyebrow::before { content:''; width:20px; height:1px; background:var(--red); }
+
+.steps-section h2 {
+  font-family:var(--serif); font-weight:900;
+  font-size:clamp(28px,5vw,48px); letter-spacing:-0.5px;
+  line-height:1.08; margin-bottom:48px;
+}
+
+.steps { display:flex; flex-direction:column; gap:0; }
+
+.step {
+  display:flex; gap:24px; padding:28px 0;
+  border-bottom:1px solid var(--border);
+  align-items:flex-start; transition:background 0.2s;
+}
+.step:last-child { border-bottom:none; }
+
+.step-n {
+  font-family:var(--serif); font-size:28px; font-weight:900;
+  color:var(--border); line-height:1; flex-shrink:0;
+  width:32px; transition:color 0.2s;
+}
+.step:hover .step-n { color:var(--red); }
+
+.step-content { flex:1; }
+.step-title { font-weight:700; font-size:16px; margin-bottom:4px; }
+.step-desc { font-size:14px; color:var(--mid); line-height:1.6; font-weight:300; }
+
+/* NUMBERS */
+.numbers-section {
+  background:var(--ink); padding:80px 32px;
+}
+.numbers-inner { max-width:720px; margin:0 auto; }
+.numbers-inner .eyebrow { color:#ff6b8a; }
+.numbers-inner .eyebrow::before { background:#ff6b8a; }
+.numbers-inner h2 { font-family:var(--serif); font-weight:900; font-size:clamp(28px,5vw,48px); letter-spacing:-0.5px; color:white; margin-bottom:48px; }
+
+.nums { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:rgba(255,255,255,0.05); }
+.num-card {
+  padding:36px 28px; background:var(--ink);
+  transition:background 0.2s;
+}
+.num-card:hover { background:rgba(210,4,45,0.08); }
+.num-val {
+  font-family:var(--serif); font-weight:900; font-size:52px;
+  letter-spacing:-2px; line-height:1; color:var(--red); margin-bottom:6px;
+}
+.num-val small { font-size:22px; color:rgba(255,255,255,0.2); letter-spacing:0; }
+.num-label { font-size:13px; color:rgba(255,255,255,0.4); line-height:1.5; }
+
+/* PRICING */
+.pricing-section { max-width:720px; margin:0 auto; padding:80px 32px; }
+.pricing-section h2 { font-family:var(--serif); font-weight:900; font-size:clamp(28px,5vw,48px); letter-spacing:-0.5px; margin-bottom:32px; }
+
+.price-cards { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+
+.price-card {
+  background:var(--white); border:1px solid var(--border);
+  border-radius:12px; padding:36px 28px; position:relative;
+  transition:border-color 0.2s;
+}
+.price-card:hover { border-color:var(--red); }
+.price-card.hot { border-color:rgba(210,4,45,0.3); background:var(--red-light); }
+
+.price-badge {
+  position:absolute; top:16px; right:16px;
+  font-family:var(--mono); font-size:9px; letter-spacing:1px;
+  padding:3px 8px; border-radius:3px;
+  background:rgba(210,4,45,0.1); color:var(--red);
+  border:1px solid rgba(210,4,45,0.2);
+}
+
+.price-phase { font-family:var(--mono); font-size:10px; letter-spacing:3px; color:var(--light); text-transform:uppercase; margin-bottom:16px; }
+.price-val { font-family:var(--serif); font-weight:900; font-size:56px; letter-spacing:-2px; color:var(--red); line-height:1; margin-bottom:12px; }
+.price-val span { font-family:var(--sans); font-size:14px; font-weight:300; color:var(--light); letter-spacing:0; }
+.price-desc { font-size:13px; color:var(--mid); line-height:1.6; margin-bottom:24px; font-weight:300; }
+
+.price-list { list-style:none; display:flex; flex-direction:column; gap:10px; }
+.price-list li { font-size:13px; color:var(--ink); display:flex; gap:10px; align-items:flex-start; line-height:1.5; }
+.price-list li::before { content:'✓'; color:var(--red); font-weight:700; flex-shrink:0; }
+
+/* CTA */
+.cta-section {
+  border-top:1px solid var(--border); background:var(--white);
+  padding:80px 32px; text-align:center;
+}
+.cta-section h2 {
+  font-family:var(--serif); font-weight:900;
+  font-size:clamp(32px,6vw,64px); letter-spacing:-1px;
+  line-height:1.05; margin-bottom:16px;
+}
+.cta-section h2 em { font-style:italic; color:var(--red); }
+.cta-section p { font-size:16px; color:var(--mid); font-weight:300; margin-bottom:36px; line-height:1.6; }
+
+.cta-info {
+  display:flex; justify-content:center; gap:32px;
+  flex-wrap:wrap; margin-top:40px;
+}
+.cta-info-item { font-family:var(--mono); font-size:11px; letter-spacing:2px; color:var(--light); text-transform:uppercase; }
+.cta-info-item a { color:var(--red); text-decoration:none; }
+
+/* FOOTER */
+footer {
+  padding:24px 32px; border-top:1px solid var(--border);
+  display:flex; justify-content:space-between; align-items:center;
+}
+.footer-r { font-family:var(--mono); font-size:10px; letter-spacing:2px; color:var(--light); }
+
+/* ANIMATIONS */
+@keyframes up { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+
+/* MOBILE */
+@media(max-width:600px){
+  nav { padding:0 20px; }
+  .hero { padding:90px 20px 48px; }
+  .steps-section, .pricing-section, .cta-section { padding:60px 20px; }
+  .numbers-section { padding:60px 20px; }
+  .price-cards { grid-template-columns:1fr; }
+  .nums { grid-template-columns:1fr 1fr; }
+  .step { gap:16px; }
+  footer { flex-direction:column; gap:10px; text-align:center; padding:20px; }
+  .cta-info { gap:16px; }
+  .hero-btns { flex-direction:column; }
+  .btn-red, .btn-outline { justify-content:center; text-align:center; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-m">m</div>
+    <div class="logo-name">MANDHACK<span>.fr</span></div>
+  </a>
+  <a href="/cdn-cgi/l/email-protection#5d363c342e1d303c3339353c3e36733b2f" class="nav-btn">Démarrer →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="tag">Toulouse — Agences indépendantes</div>
+  <h1>Des mandats exclusifs.<br><em>Sans prospecter.</em></h1>
+  <p>Des vendeurs motivés apparaissent dans votre agenda. Vous ne décrochez pas le téléphone. Vous vous présentez.</p>
+  <div class="hero-btns">
+    <a href="/cdn-cgi/l/email-protection#fd969c948ebd909c9399959c9e96d39b8f" class="btn-red">C'est gratuit pour commencer →</a>
+    <a href="#comment" class="btn-outline">Comment ça marche ↓</a>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-inner">
+    <div class="strip-item">Vendeurs qualifiés <b>en temps réel</b></div>
+    <div class="strip-item">Closer dédié <b>à Toulouse</b></div>
+    <div class="strip-item">Injection <b>Google Calendar</b></div>
+    <div class="strip-item">Gratuit <b>jusqu'au 1er mandat</b></div>
+    
+    <div class="strip-item">Résiliable <b>à tout moment</b></div>
+    <div class="strip-item">Vendeurs qualifiés <b>en temps réel</b></div>
+    <div class="strip-item">Closer dédié <b>à Toulouse</b></div>
+    <div class="strip-item">Injection <b>Google Calendar</b></div>
+    <div class="strip-item">Gratuit <b>jusqu'au 1er mandat</b></div>
+    
+    <div class="strip-item">Résiliable <b>à tout moment</b></div>
+  </div>
+</div>
+
+<!-- STEPS -->
+<section class="steps-section" id="comment">
+  <div class="eyebrow">Comment ça marche</div>
+  <h2>5 étapes.<br>0 effort de votre côté.</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-n">1</div>
+      <div class="step-content">
+        <div class="step-title">On détecte les vendeurs motivés</div>
+        <div class="step-desc">Sur votre secteur, en temps réel. Uniquement les profils sérieux.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-n">2</div>
+      <div class="step-content">
+        <div class="step-title">On qualifie chaque profil</div>
+        <div class="step-desc">Analyse automatique. Seuls les meilleurs passent à l'étape suivante.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-n">3</div>
+      <div class="step-content">
+        <div class="step-title">Un closer appelle et confirme</div>
+        <div class="step-desc">Le rendez-vous d'estimation est calé avec le vendeur.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-n">4</div>
+      <div class="step-content">
+        <div class="step-title">Le RDV arrive dans votre agenda</div>
+        <div class="step-desc">Directement dans Google Calendar. Vous recevez la notification.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-n">5</div>
+      <div class="step-content">
+        <div class="step-title">Vous vous présentez</div>
+        <div class="step-desc">Vous rentrez le mandat exclusif. C'est tout.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<section class="numbers-section">
+  <div class="numbers-inner">
+    <div class="eyebrow">Les chiffres</div>
+    <h2>Ce que ça représente pour vous.</h2>
+    <div class="nums">
+      <div class="num-card">
+        <div class="num-val">4-8<small>/mois</small></div>
+        <div class="num-label">RDV qualifiés dans votre agenda</div>
+      </div>
+      <div class="num-card">
+        <div class="num-val">0<small>€</small></div>
+        <div class="num-label">Jusqu'au 1er mandat signé</div>
+      </div>
+      <div class="num-card">
+        <div class="num-val">15<small>%</small></div>
+        <div class="num-label">D'un mandat rembourse le service</div>
+      </div>
+      <div class="num-card">
+        <div class="num-val">∞<small></small></div>
+        <div class="num-label">Résiliable à tout moment</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section">
+  <div class="eyebrow">Tarification</div>
+  <h2>Vous payez<br>après le résultat.</h2>
+  <div class="price-cards">
+    <div class="price-card">
+      <div class="price-phase">Phase 1 — Preuve</div>
+      <div class="price-val">0€</div>
+      <p class="price-desc">Jusqu'à votre premier mandat exclusif signé. Aucun risque.</p>
+      <ul class="price-list">
+        <li>Système opérationnel dès le départ</li>
+        <li>4 à 8 RDV qualifiés par mois</li>
+        <li>Closer dédié à Toulouse et proche périphérie</li>
+      </ul>
+    </div>
+    <div class="price-card hot">
+      <div class="price-badge">APRÈS RÉSULTAT</div>
+      <div class="price-phase">Phase 2 — Croissance</div>
+      <div class="price-val">2500€ <span>/mois</span></div>
+      <p class="price-desc">Activé au premier mandat. Résiliable à tout moment après 2 mois.</p>
+      <ul class="price-list">
+        <li>Volume maintenu et optimisé</li>
+        <li>Rapport hebdomadaire</li>
+        <li>1 mandat = service remboursé</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>On commence<br><em>quand vous voulez.</em></h2>
+  <p>15 minutes pour démarrer. Aucun engagement avant votre premier mandat.</p>
+  <a href="/cdn-cgi/l/email-protection#95fef4fce6d5f8f4fbf1fdf4f6febbf3e7" class="btn-red" style="font-size:16px;padding:18px 36px;margin:0 auto;display:inline-flex;">
+    Écrire à Kaïs →
+  </a>
+  <div class="cta-info">
+    <div class="cta-info-item"><a href="/cdn-cgi/l/email-protection#b7dcd6dec4f7dad6d9d3dfd6d4dc99d1c5"><span class="__cf_email__" data-cfemail="e289838b91a28f838c868a838189cc8490">[email&#160;protected]</span></a></div>
+    <div class="cta-info-item">Toulouse & périphérie</div>
+    <div class="cta-info-item" style="color:#16a34a">● Places disponibles</div>
+  </div>
+</section>
